@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpendWise tests</title>
+</head>
+<body>
+  <h1>tests</h1>
+  <ul id="out"></ul>
+  <p id="sum"></p>
+  <script type="module">
+    import{
+      validate,
+      warnDuplicate,
+      validateImport,
+    } from "./scripts/validators.js"
+    import {compileRegex,highlight} from "./scripts/search.js"
+    let pass=0,
+    fail =0
+  const t = (name,ok)=>{
+    ok ? pass++ : fail++;
+    out.insertAdjacentHTML(
+      "beforeend",
+      `<li>${ok ? "☑️" : "❌"} ${name} </li>`,
+    )
+  }
+  t(
+    "Description rejects loading space",
+    validate("description","hi") !=="",
+  )
+  t(
+    "description rejects double space",
+    validate("description", "a  b") !=="",
+  )
+  t(
+    "description accepts normal",
+    validate("description","Lunch at cafeteria") === "",
+  )
+  t("amount accepts 12.50",validate("amount,12.50")=== "")
+  t("amount rejects 012",validate("amount","012") !=="" )
+  t("amount rejects 1.234", validate ("amount","1.234") !== "");
+  t("date accepts leap day", validate("date","2024-02-29")=== "");
+  t("date rejects 2025-13-01", validate("date","2025-13-01")!=="")
+  t(
+    'date rejects 2025-02-30 (not real)',
+    validate("date","2025-02-30") !=="",
+  )
+  t(
+    'category accepts "Fast-food"',
+    validate("category","Fast-food") === "",
+  )
+  t(
+    "category rejets digits", validate("category","Food2") !==""
+  )
+  t(
+    "duplicate word warns", warnDuplicate("coffee coffee") !== ""
+  )
+  t(
+    "compileRegex returns null on bad pattern",
+    compileRegex("(")=== null
+  )
+  t(
+    "highlight escapes HTML",
+    highlight("<b>tea</b>", /tea/i) === "&lt;b&gt;<mark>tea</mark>&lt;/b&gt;",
+  )
+  t(
+  "import rejects non-array", !validateImport({}).ok
+  )
+  t(
+  "import rejects bad record", !validateImport([{id: "x"}]).ok
+  )
+  sum.textContent= `${pass} passed, ${fail} failed`;
+  </script>
+</body>
+</html>
