@@ -1,0 +1,99 @@
+[
+  {
+    "id":"rec_0001",
+    "description":"Lunch at cafeteria",
+    "amount": 12.5,
+    "category":"Food",
+    "date": "2026-10-14",
+    "createdAt": "2026-10-14T08:00:00.000Z",
+    "updatedAt": "2026-10-14T08:00:00.000Z"
+  },
+  {
+    "id":"rec_0002",
+    "description":"Chemistry textbook",
+    "amount":89.99,
+    "category":"Books",
+    "date":"2026-10-12",
+    "createdAt":"2026-10-12T08:00:00.000Z",
+    "updatedAt":"2026-10-12T08:00:00.000Z"
+  },
+  {
+    "id":"rec_0003",
+    "description":"Bus pass",
+    "amount": 45.0,
+    "category":"Transport",
+    "date":"2026-10-10",
+    "createdAt":"2026-10-10T08:00:00.000Z",
+    "updatedAt":"2026-10-10:00:00.000Z"
+  },
+  {
+    "id":"rec_0004",
+    "description":"Coffee with friends",
+    "amount": 8.75,
+    "category":"Entertaiment",
+    "date":"2026-10-13",
+    "createdAt":"2026-10-13T08:00:00.000Z",
+    "updatedAt":"2026-10-13T08:00:00.000Z"
+  },
+  {
+    "id":"rec_0005",
+    "description":"Free campus pen",
+    "amount":0,
+    "category":"Other",
+    "date":"2026-01-01",
+    "createdAt":"2026-01-01T08:00:00.000Z"
+  },
+  {
+    "id":"rec_0006",
+    "description":"Leap day pizza pizza night",
+    "amount":19.99,
+    "category":"Food",
+    "date":"2024-02-29",
+    "createdAt":"2024-02-29T08:00:00.000Z",
+    "updatedAt":"2024-02-29T08:00:00.000Z"
+  },
+  {
+    "id":"rec_0007",
+    "description":"Tuition fee installment",
+    "amount": 1250.0,
+    "category":"Fees",
+    "date":"2026-12-31",
+    "createdAt":"2026-10-01T08:00:00.000Z",
+    "updatedAt":"2026-10-01T08:00:00.000Z"
+  },
+  {
+    "id":"rec_0008",
+    "description":"Sticker",
+    "amount": 0.01,
+    "category":"Other",
+    "date":"2026-10-09",
+    "createdAt":"2026-10-09T08:00:00.000Z",
+    "updatedAt":"2026-10-09T08:00:00.000Z"
+  },
+  {
+    "id":"rec_0009",
+    "description":"Tea & <b>snacks</b> (cafe)",
+    "amount":6.4,
+    "category":"Food",
+    "date":"2026-10-11",
+    "createdAt":"2026-10-11T08:00:00.000Z",
+    "updatedAt":"2026-10-11T08:00:00.000Z"
+  },
+  {
+    "id":"rec_0010",
+    "description":"Streaming-service subscription",
+    "amount": 99999.99,
+    "category":"Entertaiment",
+    "date":"2025-02-28",
+    "createdAt":"2025-02-28T08:00:00.000Z",
+    "updatedAt":"2025-02-28T08:00:00.000Z"
+  },{
+    "id":"rec_0011",
+    "description":"Used notebook set",
+    "amount": 14.25,
+    "category":"Books",
+    "date":"2026-10-08",
+    "createdAt":"2026-10-08T08:00:00.000Z",
+    "updatedAt":"2026-10-08T08:00:00.000Z"
+  }
+]
