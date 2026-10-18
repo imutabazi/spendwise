@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SpendWise- Student Finance Tracker</title>
+  </head>
+  <body>
+    <a href="#main" class="skip">Skip to content</a>
+    <header class="top">
+      <h1>Spendwise</h1>
+      <nav aria-label="Main">
+        <ul>
+          <li><a href="#dashboard">Dashboard</a></li>
+          <li><a href="#records">Records</a></li>
+          <li><a href="#add">Add</a></li>
+          <li><a href="#settings">Settings</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <p class="status" id="status" role="status"></p>
+    <main id="main" tabindex="-1">
+      <section id="dashboard" aria-labelledby="h-dash">
+        <h2 id="h-dash" tabindex="-1">Dashboard</h2>
+        <dl class="stats">
+          <div>
+            <dt>Records</dt>
+            <dd id="s-count">0</dd>
+          </div>
+          <div>
+            <dt>Total spent</dt>
+            <dd id="s-sum">0</dd>
+          </div>
+          <div>
+            <dt>Top category</dt>
+            <dd id="s-top">-</dd>
+          </div>
+        </dl>
+        <p id="cap-polite" class="cap" role="status" aria-live="polite"></p>
+        <p
+          id="cap-assertive"
+          class="cap over"
+          role="alert"
+          aria-live="assertive"
+        ></p>
+        <h3>Last 7 days</h3>
+        <ol
+          id="trend"
+          class="trend"
+          aria-label="Spending per day for the last 7 days"
+        ></ol>
+      </section>
+      <section id="records" aria-labelledby="h-rec" hidden>
+        <h2 id="h-rec" tabindex="-1">Records</h2>
+        <div class="tools">
+          <div class="field">
+            <label for="q">Search (regex) </label>
+            <input
+              type="text"
+              id="q"
+              placeholder="e.g. (coffee|tea)"
+              autocomplete="off"
+              spellcheck="false"
+              aria-describedby="q-err"
+            />
+            <span id="q-err" class="err"></span>
+          </div>
+          <label class="check">
+            <input type="checkbox" id="ci" checked />
+            Ignore case
+          </label>
+          <div class="field">
+            <label for="sort">Sort by</label>
+            <select id="sort">
+              <option value="date-d">Date (newest)</option>
+              <option value="date-a">Date (oldest)</option>
+              <option value="desc-a">Description A-Z</option>
+              <option value="desc-d">Description Z-A</option>
+              <option value="amt-a">Amount (Asc)</option>
+              <option value="amt-d">Amount (Desc)</option>
+            </select>
+          </div>
+        </div>
+        <table>
+          <caption class="sr">
+            Transactions
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Description</th>
+              <th scope="col">Category</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+        <p id="empty" class="empty">
+          No records match. Clear the search or add a transaction
+        </p>
+      </section>
+      <section id="add" aria-labelledby="h-add" hidden>
+        <h2 id="h-add" tabindex="-1">Add transaction</h2>
+        <form id="form" novalidate>
+          <div class="field">
+            <label for="f-description">Description</label
+            ><input
+              id="f-description"
+              name="description"
+              aria-describedby="e-description"
+              autocomplete="off"
+            /><span id="e-description" class="err"></span>
+          </div>
+          <div class="field">
+            <label for="">Amount (base currency)</label
+            ><input
+              id="f-amount"
+              name="amount"
+              inputmode="decimal"
+              aria-describedby="e-amount"
+              autocomplete="off"
+            />
+            <span id="e-amount" class="err"></span>
+          </div>
+          <div class="field">
+            <label for="f-category">Category</label
+            ><input
+              id="f-category"
+              name="category"
+              list="cats"
+              aria-describedby="e-category"
+              autocomplete="off"
+            />
+            <datalist id="cats"></datalist>
+            <span id="e-category" class="err"></span>
+          </div>
+          <div class="field">
+            <label for="f-date">Date (YYYY-MM-DD)</label
+            ><input
+              name="date"
+              id="f-date"
+              placeholder="2026-10-18"
+              aria-describedby="e-date"
+              autocomplete="off"
+            />
+            <span id="e-date" class="err"></span>
+            <button type="submit">Save transaction</button>
+          </div>
+        </form>
+      </section>
+      <section id="settings">
+        <h2 id="h-set" tabindex="-1">Settings</h2>
+        <form id="set-form" novalidate>
+          <fieldset>
+            <legend>Currencies (rates are manual, per 1 unit of base)</legend>
+            <div class="field">
+              <label for="">Base currency</label
+              ><input
+                id="s-base"
+                maxlength="3"
+                aria-describedby="e-base"
+              /><span id="e-base" class="err"></span>
+            </div>
+            <div class="field">
+              <label for="s-c2">Currency 2</label
+              ><input id="s-c2" maxlength="3" />
+            </div>
+            <div class="field">
+              <label for="s-r2">Rate 2</label
+              ><input id="s-r2" inputmode="decimal" aria-describedby="e-rate" />
+            </div>
+            <div class="field">
+              <label for="s-c3">Currency 3</label>
+              <input id="s-c3" maxlength="3" />
+            </div>
+            <div class="field">
+              <label for="s-r3">Rate 3</label
+              ><input id="s-r3" inputmode="decimal" /><span
+                id="e-rate"
+                class="err"
+              ></span>
+            </div>
+            <div class="field">
+              <label for="s-disp">Display currency</label
+              ><select id="s-disp"></select>
+            </div>
+          </fieldset>
+          <div class="field">
+            <label for="">Spending cap (base currency)</label
+            ><input
+              id="s-cap"
+              inputmode="decimal"
+              aria-describedby="e-cap"
+            /><span id="e-cap" class="err"></span>
+          </div>
+          <div class="field">
+            <label for="s-cats">Categories (comma separated)</label
+            ><input id="s-cats" aria-describedby="e-cats" /><span
+              id="e-cats"
+              class="err"
+            ></span
+            ><button type="submit">Save settings</button>
+          </div>
+        </form>
+        <h3>Data</h3>
+        <div class="row">
+          <button type="button" id="export">Export JSON</button
+          ><label for="import" class="btn">Import JSON</label
+          ><input
+            type="file"
+            id="import"
+            class="sr"
+            accept="application/json"
+          /><button type="button" id="reset" class="ghost">
+            Reset to seed data
+          </button>
+        </div>
+      </section>
+      <section id="about" aria-labelledby="h-about" hidden>
+        <h2 id="h-about" tabindex="-1">About</h2>
+        <p>
+          Spendwise helps students see where their money goes: log
+          transactions,search them with regular expressions, and stay under a
+          spending cap. Everything is stored in your browser
+        </p>
+        <p>
+          Built by <strong>Innocente MUTABAZI UMUHUZA</strong>
+          <a href="https://github.com/imutabazi">GitHub</a
+          ><a href="mailto:i.mutabazi@alustudent.com"
+            >i.mutabazi@alustudent.com</a
+          >
+        </p>
+      </section>
+
+    </main>
+    <footer>
+      <p>SpendWise - Summative Assignment: Building Responsive UI</p>
+    </footer>
+  </body>
+</html>
