@@ -26,8 +26,8 @@
     )
   }
   t(
-    "Description rejects loading space",
-    validate("description","hi") !=="",
+    "Description rejects leading space",
+    validate("description"," hi") !=="",
   )
   t(
     "description rejects double space",
@@ -37,7 +37,7 @@
     "description accepts normal",
     validate("description","Lunch at cafeteria") === "",
   )
-  t("amount accepts 12.50",validate("amount,12.50")=== "")
+  t("amount accepts 12.50",validate("amount","12.50")=== "")
   t("amount rejects 012",validate("amount","012") !=="" )
   t("amount rejects 1.234", validate ("amount","1.234") !== "");
   t("date accepts leap day", validate("date","2024-02-29")=== "");

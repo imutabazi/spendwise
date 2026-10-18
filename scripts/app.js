@@ -1,11 +1,11 @@
 import * as S from "./state.js"
-import { hasData } from "./storage"
+import { hasData } from "./storage.js"
 import {validate,validateRecord,validateImport,warnDuplicate,} from "./validators.js"
 import { compileRegex } from "./search.js"
 import * as UI from "./ui.js"
 const $ = (s) => document.querySelector(s)
 let editing = null
-fresh = null 
+let fresh = null 
 const sorters = {
   "date-d": (a,b) => b.date.localeCompare(a.date),
   "date-a": (a,b)=>a.date.localeCompare(b.date),
@@ -16,18 +16,18 @@ const sorters = {
 }
 
 function render(){
-  const q = $("q").value,
+  const q = $("#q").value,
   re=compileRegex(q,$("#ci").checked ? "i" : "")
   $("#q-err").textContent= 
   q && !re ? "Invalid pattern. Check brackets and escapes." : "";
   $("#q").setAttribute("aria-invalid",String(!!(q&&!re)))
   const rows = S.state.records.filter((r)=>!re || [r.description,r.category,String(r.amount),r.date].some((v)=>re.test(v))
 ).sort(sorters[$("#sort").value]);
-UI.renderTable(rows, re, editingId, fresh)
+UI.renderTable(rows, re, editing, fresh)
 UI.renderStats()
 UI.renderSettings()
 }
-S.subscribe(render)
+S.subscribe(render);
 ["description","amount","category","date"].forEach( (f)=> { 
   const el = $("#form").elements[f];
   el.addEventListener('input', () => {
@@ -70,6 +70,13 @@ $("#rows").addEventListener("click",(e)=>{
     editing= null;
     render()
   }
+  if(act==="del"){
+      const r = S.state.records.find((x)=>x.id===id);
+      if(confirm(`Delete "${r.description}"?`)){
+        S.remove(id);
+        UI.say("Transaction deleted.")
+      }
+    }
   if(act==="save"){
     const d= Object.fromEntries([...tr.querySelectorAll('input')].map((i)=>[i.name,i.value]),
   );
@@ -159,7 +166,7 @@ async function loadSeed(){
 }
 $("#reset").addEventListener(
   "click",
-  ()=>confirm ("Replace all records with seed data?")
+  ()=>confirm ("Replace all records with seed data?") && loadSeed()
 )
 
 window.addEventListener("hashchange", ()=>UI.showSection(location.hash.slice(1)))

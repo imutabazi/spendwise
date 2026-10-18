@@ -99,7 +99,7 @@
           </thead>
           <tbody id="rows"></tbody>
         </table>
-        <p id="empty" class="empty">
+        <p id="empty" class="empty" hidden>
           No records match. Clear the search or add a transaction
         </p>
       </section>
@@ -116,7 +116,7 @@
             /><span id="e-description" class="err"></span>
           </div>
           <div class="field">
-            <label for="">Amount (base currency)</label
+            <label for="s-base">Amount (base currency)</label
             ><input
               id="f-amount"
               name="amount"
@@ -152,13 +152,13 @@
           </div>
         </form>
       </section>
-      <section id="settings">
+      <section id="settings" aria-labelledby="h-set" hidden>
         <h2 id="h-set" tabindex="-1">Settings</h2>
         <form id="set-form" novalidate>
           <fieldset>
             <legend>Currencies (rates are manual, per 1 unit of base)</legend>
             <div class="field">
-              <label for="">Base currency</label
+              <label for="s-base">Base currency</label
               ><input
                 id="s-base"
                 maxlength="3"
@@ -190,7 +190,7 @@
             </div>
           </fieldset>
           <div class="field">
-            <label for="">Spending cap (base currency)</label
+            <label for="s-cap">Spending cap (base currency)</label
             ><input
               id="s-cap"
               inputmode="decimal"

@@ -24,13 +24,13 @@
     "category":"Transport",
     "date":"2026-10-10",
     "createdAt":"2026-10-10T08:00:00.000Z",
-    "updatedAt":"2026-10-10:00:00.000Z"
+    "updatedAt":"2026-10-10T08:00:00.000Z"
   },
   {
     "id":"rec_0004",
     "description":"Coffee with friends",
     "amount": 8.75,
-    "category":"Entertaiment",
+    "category":"Entertainment",
     "date":"2026-10-13",
     "createdAt":"2026-10-13T08:00:00.000Z",
     "updatedAt":"2026-10-13T08:00:00.000Z"
@@ -41,7 +41,8 @@
     "amount":0,
     "category":"Other",
     "date":"2026-01-01",
-    "createdAt":"2026-01-01T08:00:00.000Z"
+    "createdAt":"2026-01-01T08:00:00.000Z",
+    "updatedAt":"2026-01-01T08:00:00.000Z"
   },
   {
     "id":"rec_0006",
@@ -83,7 +84,7 @@
     "id":"rec_0010",
     "description":"Streaming-service subscription",
     "amount": 99999.99,
-    "category":"Entertaiment",
+    "category":"Entertainment",
     "date":"2025-02-28",
     "createdAt":"2025-02-28T08:00:00.000Z",
     "updatedAt":"2025-02-28T08:00:00.000Z"

@@ -7,7 +7,7 @@ export const RULES = {
   rate: {re: /^(0|[1-9]\d*)(\.\d{1,6})?$/,msg:"Use a positive number like 0.92"}
 }
 
-export const DUP_WORD = /\b(\w+)\s+1\b/1
+export const DUP_WORD = /\b(\w+)\s+\1\b/i
 export function validate(field,value){
   const r = RULES[field], v = String(value?? '');
   if(!r) return '';
@@ -20,7 +20,7 @@ export function validate(field,value){
 }
 export const warnDuplicate = v => (DUP_WORD.test(v)?'Heads up: repeated word':'');
 export function validateRecord(r){
-  const errors={}
+  const errs={}
   for (const f of ['description','amount','category','date']){
     const e= validate(f, r[f]); if (e) errs[f]=e;
   }

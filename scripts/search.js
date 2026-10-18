@@ -8,15 +8,15 @@ export function compileRegex (input,flags = "i"){
 export const esc = (s) => 
   String(s).replace(/[&<>"']/g, 
     (c)=>({
-    "&": "&amp","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+    "&": "&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
   })[c],)
 
-export function hightlight (text,re){
+export function highlight (text,re){
   const s= String(text)
   if(!re) return esc(s)
   const g = new RegExp(
 re.source,
-re.flags.includes("g") ? re.flags + 'g',
+re.flags.includes("g") ? re.flags : re.flags + 'g',
 )
 let out = "",
 last =0,

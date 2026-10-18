@@ -1,5 +1,5 @@
-import { hightlight,esc } from "./search";
-import { state,money,rateFor } from "./state";
+import { highlight,esc } from "./search.js";
+import { state,money,rateFor } from "./state.js";
 const $ = s => document.querySelector(s)
 export const say = msg => {const el = $("#status");el.textContent= '';setTimeout(()=>(el.textContent=msg),30)}
 const HEADS = {dashboard: 'dash',records:'rec',add:'add',settings:'set',about:'about'}
@@ -13,17 +13,17 @@ $('#h-'+HEADS[id]).focus();
 }
 
 const viewRow = (r,re,fresh) => `<tr data-id="${esc(r.id)}"${r.id === fresh ? ' class="new"': ''}>
-<td data-label="Date">${hightlight(r.date,re)}</td>
-<td data-label="Description">${hightlight(r.description,re)}</td>
-<td data-label="Category">${hightlight(r.category,re)}</td>
-<td data-label="Amount">${hightlight(money(r.amount),re)}</td>
+<td data-label="Date">${highlight(r.date,re)}</td>
+<td data-label="Description">${highlight(r.description,re)}</td>
+<td data-label="Category">${highlight(r.category,re)}</td>
+<td data-label="Amount">${highlight(money(r.amount),re)}</td>
 <td data-label="Actions"><span class="row">
  <button type="button" class="ghost" data-act="edit" aria-label="Edit ${esc(r.description)}">Edit</button>
  <button type="button" class="danger" data-act="del" aria-label="Delete ${esc(r.description)}">Delete</button></span></td></tr>
 `
 const editRow = r => `<tr data-id="${esc(r.id)}">
   <td data-label="Date"><input aria-label="Date" name="date" value="${esc(r.table)}"></td>
-  <td data-label="Description"><input aria-label="Description" name="Description" value="${esc(r.description)}"></td>
+  <td data-label="Description"><input aria-label="Description" name="description" value="${esc(r.description)}"></td>
   <td data-label="Category"><input aria-label="Category" name="category" value="${esc(r.category)}"></td>
   <td data-label="Amount"><input aria-label="Amount in base currency" name="amount" value="${esc(r.amount)}"></td>
   <td data-label="Actions"><span class="row">
@@ -31,7 +31,7 @@ const editRow = r => `<tr data-id="${esc(r.id)}">
   <button type="button" class="ghost" data-act="cancel">Cancel</button></span></td></tr>
 `
 export function renderTable (rows,re, editingId,freshId){
-  $('rows').innerHTML=rows.map(r=>(r.id===editingId ? editRow(r) : viewRow(r,re,freshId))).join('');
+  $('#rows').innerHTML=rows.map(r=>(r.id===editingId ? editRow(r) : viewRow(r,re,freshId))).join('');
   $('#empty').hidden = rows.length > 0
 }
 
@@ -59,6 +59,6 @@ export function renderSettings(){
   const set = (id,v) => {if (document.activeElement !== $(id))$(id).value=v}
   set('#s-base',s.base);set('#s-c2',c2||'');set('#s-r2',s.rates[c2]?? '')
   set('#s-c3',c3 || '');set('#s-r3',s.rates[c3] ?? ''); set('#s-cap',s.cap);set('#s-cats',s.categories.join(', '))
-  $('#s-disp').innerHTML=[s.base,c2,c3].filter(Boolean).map(c=>`<option${c===s.display? 'selected' : ''}>${esc(c)}</option>`).join('');
+  $('#s-disp').innerHTML=[s.base,c2,c3].filter(Boolean).map(c=>`<option${c===s.display? ' selected' : ''}>${esc(c)}</option>`).join('');
   $('#cats').innerHTML = s.categories.map(c=>`<option value="${esc(c)}">`).join('')
 }
