@@ -3,7 +3,8 @@
 Theme : Student Finance Tracking
 Live site : https://imutabazi.github.io/spendwise/ 
 
-Demo video : 
+Demo video : https://youtu.be/vQjtVeDE_0M
+
 Author : Innocente Mutabazi Umuhuza (Github: imutabazi, i.mutabazi@alustudent.com)
 
 
