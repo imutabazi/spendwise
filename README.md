@@ -1,6 +1,6 @@
 ## SpendWise - Student Finance Tracker 
 
-Theme : Student Finance Tracker 
+Theme : Student Finance Tracking
 Live site : 
 Demo video : 
 Author : Innocente Mutabazi Umuhuza (Github: imutabazi, i.mutabazi@alustudent.com)
