@@ -41,7 +41,7 @@ $("#form").addEventListener("submit",(e)=>{
   const d = Object.fromEntries(new FormData(e.target))
   const errs = validateRecord(d);
   ["description","amount","category","date"].forEach((f)=>{
-    $("#e-",f).textContent = errs[f] || "";
+    $("#e-"+f).textContent = errs[f] || "";
     e.target.elements[f].setAttribute("aria-invalid",String(!!errs[f]));
   })
   const first = Object.keys(errs)[0]
